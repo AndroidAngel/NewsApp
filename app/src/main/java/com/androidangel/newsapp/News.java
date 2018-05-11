@@ -7,6 +7,9 @@ public class News extends Object implements Serializable {
 
 
 
+
+
+
     public String news_url;
     public String sectionName;
     public String webTitle;

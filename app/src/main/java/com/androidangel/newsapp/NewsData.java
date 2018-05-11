@@ -1,4 +1,4 @@
 package com.androidangel.newsapp;
 
-public class NewsDetail {
+public class NewsData {
 }

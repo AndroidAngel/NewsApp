@@ -7,13 +7,14 @@ import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.Query;
 
+
 public interface NewsService {
 
     String BASE_URL = "https://content.guardianapis.com";
 
     @Headers("Content-Type: application/json")
     @GET(".json")
-    Call<News> getData();
+    Call<NewsData> getResults();
 
 
 

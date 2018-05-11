@@ -9,10 +9,10 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class NewsAdapter extends ArrayAdapter<News> {
+public class NewsAdapter extends ArrayAdapter<Results> {
 
 
-    public NewsAdapter(Context context, List<News> newsArray) {
+    public NewsAdapter(Context context, List<Results> newsArray) {
         super(context, 0, newsArray);
     }
     @Override
@@ -20,15 +20,16 @@ public class NewsAdapter extends ArrayAdapter<News> {
         View listItemView = convertView;
         if (listItemView == null){
             listItemView = LayoutInflater.from(getContext()).inflate(
-                    R.layout.list_item,parent,false);
+                    R.layout.category_list_item,parent,false);
 
         }
-        News currentNews = getItem(position);
-        TextView sectionTV = listItemView.findViewById(R.id.first_view);
-        sectionTV.setText(currentNews.getSectionName());
+        Results currentNews = getItem(position);
+        TextView sectionTV = listItemView.findViewById(R.id.section_id);
+        sectionTV.setText(currentNews.getSectionId());
 
-        TextView newsName = listItemView.findViewById(R.id.second_view);
-        newsName.setText(currentNews.getWebTitle());
+//        TextView newsName = listItemView.findViewById(R.id.second_view);
+//        newsName.setText(currentNews.getWebTitle());
+        // for the next activity
 
         return listItemView;
     }

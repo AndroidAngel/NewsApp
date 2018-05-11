@@ -1,5 +1,8 @@
 package com.androidangel.newsapp;
 
+
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -16,73 +19,69 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainCategory extends AppCompatActivity {
+public class NewsActivity extends AppCompatActivity {
 
-
-    private static final String LOG_TAG = MainCategory.class.getName();
+    private static final String LOG_TAG = NewsActivity.class.getSimpleName();
 
     private static final String BASE_URL = "https://content.guardianapis.com";
 
-
-    private SectionAdapter mSectionAdapter;
+    private NewsAdapter mNewsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_category);
+        setContentView(R.layout.activity_news);
 
-        ListView listViewMainCategory = findViewById(R.id.category_list);
-        mSectionAdapter = new SectionAdapter(this, new ArrayList<SectionResults>());
-        listViewMainCategory.setAdapter(mSectionAdapter);
+        ListView listViewNews = findViewById(R.id.mainList);
+        mNewsAdapter = new NewsAdapter(this, new ArrayList<Results>());
+        listViewNews.setAdapter(mNewsAdapter);
 
         final Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-
         NewsService newsService = retrofit.create(NewsService.class);
-
-
-        Call<SectionData> call = newsService.listSections();
-
-
-        call.enqueue(new Callback<SectionData>() {
+        Call<NewsData> call = newsService.listOfAllNews();
+        call.enqueue(new Callback<NewsData>() {
             @Override
-            public void onResponse(Call<SectionData> call, Response<SectionData> response) {
+            public void onResponse(Call<NewsData> call, Response<NewsData> response) {
 
                 Log.d(LOG_TAG, "onResponse: Server Response: " + response.toString());
                 Log.d(LOG_TAG, "onResponse: received information: " + response.body().toString());
 
-                ArrayList<SectionResults> resultsList = response.body().getSectionsResponse().getSectionResultsArrayList();
-                for (int i = 0; i < resultsList.size(); i++) {
-                    Log.d(LOG_TAG, "onResponse: \n" +
-                            "id: " + resultsList.get(i).getId() + "\n" +
-                            "apiUrl: " + resultsList.get(i).getApiUrl() + "\n" +
-                            "webTitle: " + resultsList.get(i).getWebTitle() + "\n" +
+                ArrayList<Results> resultsNewslist = response.body().getNewsResponse().getResultsArrayList();
+                for (int i = 0; i < resultsNewslist.size(); i++) {
+                    Log.d(LOG_TAG, "onResponse:  \n" +
+                            "sectionId" + resultsNewslist.get(i).getSectionId() + "\n" +
+                            "webTitle" + resultsNewslist.get(i).getWebTitle() + "\n" +
+                            "apiUrl" + resultsNewslist.get(i).getApiUrl() + "\n" +
                             "-----------------------------------------------\n\n");
 
                 }
-
-                mSectionAdapter.clear();
-                mSectionAdapter.addAll(resultsList);
+                mNewsAdapter.clear();
+                mNewsAdapter.addAll(resultsNewslist);
 
 
             }
 
             @Override
-            public void onFailure(Call<SectionData> call, Throwable t) {
+            public void onFailure(Call<NewsData> call, Throwable t) {
                 Log.e(LOG_TAG, "onFailure: Something went wrong: " + t.getMessage());
-                Toast.makeText(MainCategory.this, "Something went wrong", Toast.LENGTH_LONG).show();
+                Toast.makeText(NewsActivity.this, "Something went wrong", Toast.LENGTH_LONG).show();
 
             }
         });
 
 
-        listViewMainCategory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listViewNews.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+
+                Results currentUri = mNewsAdapter.getItem(position);
+                Uri newsUri = Uri.parse(currentUri.getWebUrl());
+                final Intent intent = new Intent(Intent.ACTION_VIEW, newsUri);
 
                 NewsService newsService = retrofit.create(NewsService.class);
                 Call<NewsData> call = newsService.listOfAllNews();
@@ -102,6 +101,8 @@ public class MainCategory extends AppCompatActivity {
                                     "-----------------------------------------------\n\n");
 
 
+                            startActivity(intent);
+
                         }
 
 
@@ -110,13 +111,14 @@ public class MainCategory extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<NewsData> call, Throwable t) {
                         Log.e(LOG_TAG, "onFailure: Something went wrong: " + t.getMessage());
-                        Toast.makeText(MainCategory.this, "Something went wrong", Toast.LENGTH_LONG).show();
+                        Toast.makeText(NewsActivity.this, "Something went wrong", Toast.LENGTH_LONG).show();
 
                     }
                 });
 
             }
         });
+
 
     }
 }

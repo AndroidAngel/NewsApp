@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -9,13 +8,18 @@
         android:id="@+id/first_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="5dp"
+        android:padding="16dp"
         android:textSize="20sp"
+        android:text="sports"
+        android:gravity="center_vertical"
         android:textColor="#1551c3"
         android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/second_view"
+        android:text="pacquio"
+        android:padding="16dp"
+        android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#5d5d5d"

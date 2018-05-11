@@ -15,21 +15,22 @@ public class NewsAdapter extends ArrayAdapter<Results> {
     public NewsAdapter(Context context, List<Results> newsArray) {
         super(context, 0, newsArray);
     }
+
     @Override
-    public View getView (int position, View convertView, ViewGroup parent){
+    public View getView(int position, View convertView, ViewGroup parent) {
         View listItemView = convertView;
-        if (listItemView == null){
+        if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(
-                    R.layout.category_list_item,parent,false);
+                    R.layout.list_item, parent, false);
 
         }
         Results currentNews = getItem(position);
-        TextView sectionTV = listItemView.findViewById(R.id.section_id);
+        TextView sectionTV = listItemView.findViewById(R.id.first_view);
         sectionTV.setText(currentNews.getSectionId());
 
-//        TextView newsName = listItemView.findViewById(R.id.second_view);
-//        newsName.setText(currentNews.getWebTitle());
-        // for the next activity
+        Results currentNewsTitle = getItem(position);
+        TextView sectionTVTitle = listItemView.findViewById(R.id.second_view);
+        sectionTVTitle.setText(currentNewsTitle.getWebTitle());
 
         return listItemView;
     }

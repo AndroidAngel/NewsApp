@@ -4,8 +4,9 @@ import java.util.ArrayList;
 
 public interface CallBackHandler {
 
-    void onComplete(ArrayList<News> newsArrayList);
+    void onComplete(ArrayList<NewsData> newsArrayList);
+
     void onFail(Throwable t);
 
-    void onComplete(News news);
+    void onComplete(NewsData news);
 }

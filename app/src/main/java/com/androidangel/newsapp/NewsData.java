@@ -6,21 +6,21 @@ import com.google.gson.annotations.SerializedName;
 public class NewsData {
     @SerializedName("response")
     @Expose
-    private NewsResponse response;
+    private NewsResponse newsResponse;
 
 
-    public NewsResponse getResponse() {
-        return response;
+    public NewsResponse getNewsResponse() {
+        return newsResponse;
     }
 
-    public void setResponse(NewsResponse response) {
-        this.response = response;
+    public void setNewsResponse(NewsResponse newsResponse) {
+        this.newsResponse = newsResponse;
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "NewsData{" +
-                "response = " + response + '\'' +'}';
+                "NewsResponse = " + newsResponse + '\'' + '}';
     }
 }
 

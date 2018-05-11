@@ -9,6 +9,15 @@ public class Results {
     @Expose
     private String sectionId;
 
+    @SerializedName("apiUrl")
+    @Expose
+    private String apiUrl;
+
+    @SerializedName("webUrl")
+    @Expose
+    private String webUrl;
+
+
     @SerializedName("sectionName")
     @Expose
     private String sectionName;
@@ -22,6 +31,15 @@ public class Results {
         return sectionId;
     }
 
+    public String getWebUrl() {
+        return webUrl;
+    }
+
+
+    public String getApiUrl() {
+        return apiUrl;
+    }
+
     public String getSectionName() {
         return sectionName;
     }
@@ -33,6 +51,15 @@ public class Results {
     public void setSectionId(String sectionId) {
         this.sectionId = sectionId;
     }
+
+    public void setWebUrl(String webUrl) {
+        this.webUrl = webUrl;
+    }
+
+    public void setApiUrl(String apiUrl) {
+        this.apiUrl = apiUrl;
+    }
+
 
     public void setSectionName(String sectionName) {
         this.sectionName = sectionName;

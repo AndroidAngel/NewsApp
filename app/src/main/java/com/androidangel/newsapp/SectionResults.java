@@ -9,7 +9,6 @@ public class SectionResults {
     @Expose
     private String id;
 
-
     @SerializedName("webUrl")
     @Expose
     private String webUrl;

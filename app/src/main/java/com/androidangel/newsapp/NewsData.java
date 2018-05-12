@@ -8,15 +8,12 @@ public class NewsData {
     @Expose
     private NewsResponse newsResponse;
 
-
     public NewsResponse getNewsResponse() {
         return newsResponse;
     }
-
     public void setNewsResponse(NewsResponse newsResponse) {
         this.newsResponse = newsResponse;
     }
-
     @Override
     public String toString() {
         return "NewsData{" +

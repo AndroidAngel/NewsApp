@@ -57,14 +57,10 @@ public class NewsActivity extends AppCompatActivity {
                             "webTitle" + resultsNewslist.get(i).getWebTitle() + "\n" +
                             "apiUrl" + resultsNewslist.get(i).getApiUrl() + "\n" +
                             "-----------------------------------------------\n\n");
-
                 }
                 mNewsAdapter.clear();
                 mNewsAdapter.addAll(resultsNewslist);
-
-
             }
-
             @Override
             public void onFailure(Call<NewsData> call, Throwable t) {
                 Log.e(LOG_TAG, "onFailure: Something went wrong: " + t.getMessage());
@@ -72,12 +68,9 @@ public class NewsActivity extends AppCompatActivity {
 
             }
         });
-
-
         listViewNews.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
 
                 Results currentUri = mNewsAdapter.getItem(position);
                 Uri newsUri = Uri.parse(currentUri.getWebUrl());
@@ -99,28 +92,16 @@ public class NewsActivity extends AppCompatActivity {
                                     "sectionName: " + resultsList.get(i).getSectionName() + "\n" +
                                     "webTitle: " + resultsList.get(i).getWebTitle() + "\n" +
                                     "-----------------------------------------------\n\n");
-
-
                             startActivity(intent);
-
                         }
-
-
                     }
-
                     @Override
                     public void onFailure(Call<NewsData> call, Throwable t) {
                         Log.e(LOG_TAG, "onFailure: Something went wrong: " + t.getMessage());
                         Toast.makeText(NewsActivity.this, "Something went wrong, \n CHECK YOUR INTERNET CONNECTION", Toast.LENGTH_LONG).show();
-
                     }
                 });
-
             }
         });
-
-
     }
-
-
 }

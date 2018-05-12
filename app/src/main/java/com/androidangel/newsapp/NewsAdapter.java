@@ -11,7 +11,6 @@ import java.util.List;
 
 public class NewsAdapter extends ArrayAdapter<Results> {
 
-
     public NewsAdapter(Context context, List<Results> newsArray) {
         super(context, 0, newsArray);
     }
@@ -34,5 +33,4 @@ public class NewsAdapter extends ArrayAdapter<Results> {
 
         return listItemView;
     }
-
 }

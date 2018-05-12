@@ -14,7 +14,6 @@ public class SectionAdapter extends ArrayAdapter<SectionResults> {
     public SectionAdapter(Context context, List<SectionResults> sectionsArray) {
         super(context, 0, sectionsArray);
     }
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View listItemView = convertView;
@@ -24,11 +23,9 @@ public class SectionAdapter extends ArrayAdapter<SectionResults> {
 
         }
 
-
         SectionResults currentSectionWT = getItem(position);
         TextView sectionTVWebTitle = listItemView.findViewById(R.id.sectiontitle);
         sectionTVWebTitle.setText(currentSectionWT.getWebTitle());
-
 
         return listItemView;
     }

@@ -17,7 +17,6 @@ public class NewsResponse {
     public void setResultsArrayList(ArrayList<Results> resultsArrayList) {
         this.resultsArrayList = resultsArrayList;
     }
-
     @Override
     public String toString() {
         return "NewsResponse{" +

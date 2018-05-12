@@ -105,7 +105,6 @@ public class MainCategory extends AppCompatActivity {
                         Log.e(LOG_TAG, "onFailure: Something went wrong: " + t.getMessage());
                         Toast.makeText(MainCategory.this, "Something went wrong"+
                                 "CHECK YOUR INTERNET CONNECTION", Toast.LENGTH_LONG).show();
-
                     }
                 });
             }

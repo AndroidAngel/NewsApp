@@ -1,9 +1,9 @@
 package com.androidangel.newsapp;
 
-        import com.google.gson.annotations.Expose;
-        import com.google.gson.annotations.SerializedName;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-        import java.util.ArrayList;
+import java.util.ArrayList;
 
 public class SectionsResponse {
     @SerializedName("results")
@@ -17,7 +17,6 @@ public class SectionsResponse {
     public void setSectionResultsArrayList(ArrayList<SectionResults> sectionResultsArrayList) {
         this.sectionResultsArrayList = sectionResultsArrayList;
     }
-
     @Override
     public String toString() {
         return "SectionResponse{" +

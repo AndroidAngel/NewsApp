@@ -7,8 +7,6 @@ public class SectionData {
     @SerializedName("response")
     @Expose
     private SectionsResponse sectionsResponse;
-
-
     public SectionsResponse getSectionsResponse() {
         return sectionsResponse;
     }

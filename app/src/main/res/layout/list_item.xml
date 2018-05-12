@@ -2,27 +2,43 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingLeft="15dp"
+    android:paddingTop="15dp"
+    android:paddingBottom="15dp"
+    android:background="#CFD8DC"
+    android:paddingRight="15dp"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/first_view"
+        android:background="#ECEFF1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
+        android:paddingTop="16dp"
+        android:paddingLeft="16dp"
         android:textSize="20sp"
         android:text="sports"
+        android:paddingBottom="5dp"
+        android:ellipsize="end"
+        android:textAllCaps="true"
+        android:fontFamily="sans-serif-medium"
         android:gravity="center_vertical"
-        android:textColor="#1551c3"
+        android:textColor="#008b00"
         android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/second_view"
         android:text="pacquio"
-        android:padding="16dp"
+        android:background="#FFFFFF"
+        android:fontFamily="sans-serif-medium"
+        android:paddingTop="5dp"
+        android:paddingLeft="16dp"
         android:gravity="center_vertical"
+        android:ellipsize="end"
+        android:textSize="18sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#5d5d5d"
+        android:textColor="#000000"
         android:paddingBottom="5dp" />
 
 

@@ -68,7 +68,7 @@ public class NewsActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<NewsData> call, Throwable t) {
                 Log.e(LOG_TAG, "onFailure: Something went wrong: " + t.getMessage());
-                Toast.makeText(NewsActivity.this, "Something went wrong", Toast.LENGTH_LONG).show();
+                Toast.makeText(NewsActivity.this, "Something went wrong,\n  CHECK YOUR INTERNET CONNECTION", Toast.LENGTH_LONG).show();
 
             }
         });
@@ -111,7 +111,7 @@ public class NewsActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<NewsData> call, Throwable t) {
                         Log.e(LOG_TAG, "onFailure: Something went wrong: " + t.getMessage());
-                        Toast.makeText(NewsActivity.this, "Something went wrong", Toast.LENGTH_LONG).show();
+                        Toast.makeText(NewsActivity.this, "Something went wrong, \n CHECK YOUR INTERNET CONNECTION", Toast.LENGTH_LONG).show();
 
                     }
                 });
@@ -121,4 +121,6 @@ public class NewsActivity extends AppCompatActivity {
 
 
     }
+
+
 }

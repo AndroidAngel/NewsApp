@@ -1,5 +1,7 @@
 package com.androidangel.newsapp;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -18,12 +20,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainCategory extends AppCompatActivity {
 
-
     private static final String LOG_TAG = MainCategory.class.getName();
 
     private static final String BASE_URL = "https://content.guardianapis.com";
-
-
     private SectionAdapter mSectionAdapter;
 
     @Override
@@ -32,7 +31,9 @@ public class MainCategory extends AppCompatActivity {
         setContentView(R.layout.main_category);
 
         ListView listViewMainCategory = findViewById(R.id.category_list);
-        mSectionAdapter = new SectionAdapter(this, new ArrayList<SectionResults>());
+        mSectionAdapter = new
+
+                SectionAdapter(this, new ArrayList<SectionResults>());
         listViewMainCategory.setAdapter(mSectionAdapter);
 
         final Retrofit retrofit = new Retrofit.Builder()
@@ -40,14 +41,11 @@ public class MainCategory extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-
         NewsService newsService = retrofit.create(NewsService.class);
-
-
         Call<SectionData> call = newsService.listSections();
+        call.enqueue(new Callback<SectionData>()
 
-
-        call.enqueue(new Callback<SectionData>() {
+        {
             @Override
             public void onResponse(Call<SectionData> call, Response<SectionData> response) {
 
@@ -61,28 +59,26 @@ public class MainCategory extends AppCompatActivity {
                             "apiUrl: " + resultsList.get(i).getApiUrl() + "\n" +
                             "webTitle: " + resultsList.get(i).getWebTitle() + "\n" +
                             "-----------------------------------------------\n\n");
-
                 }
-
                 mSectionAdapter.clear();
                 mSectionAdapter.addAll(resultsList);
-
-
             }
-
             @Override
             public void onFailure(Call<SectionData> call, Throwable t) {
                 Log.e(LOG_TAG, "onFailure: Something went wrong: " + t.getMessage());
-                Toast.makeText(MainCategory.this, "Something went wrong", Toast.LENGTH_LONG).show();
-
+                Toast.makeText(MainCategory.this, "Something went wrong"
+                        + "CHECK YOUR INTERNET CONNECTION", Toast.LENGTH_LONG).show();
             }
         });
 
-
-        listViewMainCategory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listViewMainCategory.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                SectionResults currentUri = mSectionAdapter.getItem(position);
+                Uri newsUri = Uri.parse(currentUri.getWebUrl());
+                final Intent intent = new Intent(Intent.ACTION_VIEW, newsUri);
 
                 NewsService newsService = retrofit.create(NewsService.class);
                 Call<NewsData> call = newsService.listOfAllNews();
@@ -101,22 +97,18 @@ public class MainCategory extends AppCompatActivity {
                                     "webTitle: " + resultsList.get(i).getWebTitle() + "\n" +
                                     "-----------------------------------------------\n\n");
 
-
+                            startActivity(intent);
                         }
-
-
                     }
-
                     @Override
                     public void onFailure(Call<NewsData> call, Throwable t) {
                         Log.e(LOG_TAG, "onFailure: Something went wrong: " + t.getMessage());
-                        Toast.makeText(MainCategory.this, "Something went wrong", Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainCategory.this, "Something went wrong"+
+                                "CHECK YOUR INTERNET CONNECTION", Toast.LENGTH_LONG).show();
 
                     }
                 });
-
             }
         });
-
     }
 }
